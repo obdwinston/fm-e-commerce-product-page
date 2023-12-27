@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+
+* {
+  /* border: 1px solid red; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+:root {
+  --orange: hsl(26, 100%, 55%);
+  --light-orange: hsl(26, 100%, 70%);
+  --pale-orange: hsl(25, 100%, 94%);
+  --very-dark-blue: hsl(220, 13%, 13%);
+  --dark-grayish-blue: hsl(219, 9%, 45%);
+  --grayish-blue: hsl(220, 14%, 75%);
+  --light-grayish-blue: hsl(223, 64%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 30px;
+  border-bottom: 1px solid var(--grayish-blue);
+  margin-bottom: 80px;
+}
+
+.nav-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-left img {
+  margin-right: 50px;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--dark-grayish-blue);
+  margin-right: 30px;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  height: 50px;
+  width: 50px;
+  margin-left: 40px;
+}
+
+.cart:hover,
+.avatar:hover {
+  cursor: pointer;
+}
+
+.product {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+
+.product-left,
+.product-right {
+  width: 50%;
+}
+
+.product-left {
+  padding: 0 60px;
+}
+
+.preview-current img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.preview-all {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thumbnail {
+  position: relative;
+  width: 20%;
+  border-radius: 20px;
+}
+
+.thumbnail img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.overlay:hover {
+  border: 2px solid var(--orange);
+  background: hsla(0, 0%, 100%, 0.7);
+  cursor: pointer;
+}
+
+.product-right {
+  padding: 60px 60px;
+}
+
+.product-brand {
+  color: var(--orange);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+  margin-bottom: 20px;
+}
+
+.product-name {
+  color: var(--very-dark-blue);
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.1rem;
+  line-height: 3.2rem;
+  margin-bottom: 40px;
+}
+
+.product-description {
+  color: var(--dark-grayish-blue);
+  line-height: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.price-value {
+  color: var(--very-dark-blue);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.price-discount {
+  background: var(--pale-orange);
+  color: var(--orange);
+  font-weight: 700;
+  padding: 5px 8px;
+  border-radius: 5px;
+}
+
+.product-discount {
+  color: var(--grayish-blue);
+  font-weight: 700;
+  text-decoration: line-through;
+  margin-bottom: 40px;
+}
+
+.product-cart {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.cart-quantity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  margin-right: 20px;
+}
+
+.quantity-minus,
+.quantity-plus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--light-grayish-blue);
+  width: 30%;
+  height: 60px;
+}
+
+.quantity-minus {
+  border-radius: 10px 0 0 10px;
+}
+
+.quantity-plus {
+  border-radius: 0 10px 10px 0;
+}
+
+.quantity-minus:hover,
+.quantity-plus:hover {
+  background: var(--grayish-blue);
+  cursor: pointer;
+}
+
+.quantity-value {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--light-grayish-blue);
+  width: 40%;
+  height: 60px;
+  font-weight: bold;
+}
+
+.cart-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 60px;
+  background: var(--orange);
+  color: var(--light-grayish-blue);
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 var(--orange);
+}
+
+.cart-add:hover {
+  background: var(--light-orange);
+  box-shadow: 0 0 10px 0 var(--light-orange);
+  cursor: pointer;
+}
+
+.cart-add img {
+  margin-right: 20px;
+}
+
+.cart-add img svg {
+  fill: red;
+}
