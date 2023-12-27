@@ -49,12 +49,29 @@ nav {
   text-decoration: none;
   color: var(--dark-grayish-blue);
   margin-right: 30px;
-  padding-bottom: 43px;
+  position: relative;
 }
 
 .links a:hover {
-  color: var(--orange);
-  border-bottom: 4px solid var(--orange);
+  color: var(--very-dark-blue);
+}
+
+.links a::after {
+  content: "";
+  height: 3px;
+  width: 100%;
+  background: var(--orange);
+  position: absolute;
+  left: 0;
+  top: 64px;
+  transform: scaleX(0);
+  transition: all 0.2s ease;
+  pointer-events: none;
+}
+
+.links a:hover::after,
+.links a:focus::after {
+  transform: scaleX(1);
 }
 
 .nav-right {
