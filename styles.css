@@ -49,6 +49,12 @@ nav {
   text-decoration: none;
   color: var(--dark-grayish-blue);
   margin-right: 30px;
+  padding-bottom: 43px;
+}
+
+.links a:hover {
+  color: var(--orange);
+  border-bottom: 4px solid var(--orange);
 }
 
 .nav-right {
