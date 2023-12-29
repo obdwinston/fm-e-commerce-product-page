@@ -103,3 +103,54 @@ cartIcon.addEventListener("click", function () {
     scale: [0, 1],
   });
 });
+
+// THUMBNAIL OVERLAYS
+
+const thumbnails = document.querySelectorAll(".thumbnail");
+
+for (i = 0; i < thumbnails.length; i++) {
+  const currentImage = document.querySelector(".current-image");
+
+  const thumbnailImage = thumbnails[i].querySelector("img");
+  const thumbnailOverlay = thumbnails[i].querySelector(".thumbnail-overlay");
+  const thumbnailIndex = thumbnailImage.src.split("-")[2];
+
+  thumbnails[i]
+    .querySelector(".thumbnail-overlay")
+    .addEventListener("click", function () {
+      currentImage.src = `/images/image-product-${thumbnailIndex}.jpg`;
+
+      for (j = 0; j < thumbnails.length; j++) {
+        thumbnails[j]
+          .querySelector(".thumbnail-overlay")
+          .classList.remove("thumbnail-selected");
+      }
+
+      thumbnailOverlay.classList.add("thumbnail-selected");
+    });
+}
+
+// MOBILE PREVIOUS/NEXT IMAGE
+
+const previousImage = document.querySelector(".previous-image");
+const nextImage = document.querySelector(".next-image");
+
+previousImage.addEventListener("click", function () {
+  const currentImage = document.querySelector(".current-image");
+
+  const currentIndex = Number(currentImage.src.split("-").pop().split(".")[0]);
+  const previousIndex = currentIndex === 1 ? 4 : currentIndex - 1;
+
+  currentImage.src = `/images/image-product-${previousIndex}.jpg`;
+});
+
+nextImage.addEventListener("click", function () {
+  const currentImage = document.querySelector(".current-image");
+
+  const currentIndex = Number(currentImage.src.split("-").pop().split(".")[0]);
+  const nextIndex = currentIndex === 4 ? 1 : currentIndex + 1;
+
+  currentImage.src = `/images/image-product-${nextIndex}.jpg`;
+});
+
+// LIGHTBOX

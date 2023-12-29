@@ -422,6 +422,7 @@ nav {
   border-radius: 20px;
 }
 
+.thumbnail-selected,
 .thumbnail-overlay:hover {
   border: 2px solid var(--orange);
   background: hsla(0, 0%, 100%, 0.7);
