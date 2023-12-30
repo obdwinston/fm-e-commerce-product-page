@@ -31,7 +31,7 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.75);
   z-index: 3;
 }
 
@@ -311,6 +311,32 @@ nav {
   transform: rotate(180deg);
 }
 
+.lightbox {
+  z-index: -1;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 600px;
+}
+
+.lightbox-close {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.lightbox-close-icon {
+  height: 20px;
+  width: 20px;
+}
+
+.lightbox-close-icon:hover {
+  cursor: pointer;
+}
+
 .product {
   display: flex;
   justify-content: center;
@@ -364,9 +390,12 @@ nav {
   }
 }
 
+.current-image:hover {
+  cursor: pointer;
+}
+
 .previous-image,
 .next-image {
-  display: none;
   position: absolute;
   background: var(--light-grayish-blue);
   width: 40px;
@@ -382,11 +411,10 @@ nav {
 .next-image {
   right: 5%;
 }
-@media only screen and (max-width: 600px) {
-  .previous-image,
-  .next-image {
-    display: block;
-  }
+
+.previous-image:hover,
+.next-image:hover {
+  cursor: pointer;
 }
 
 .preview-all {

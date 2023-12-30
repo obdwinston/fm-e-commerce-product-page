@@ -1,8 +1,9 @@
+const overlay = document.querySelector(".overlay");
+
 // TOGGLING MOBILE MENU
 
 const mobileMenu = document.querySelector(".mobile-menu");
 const mobileLinks = document.querySelector(".links");
-const overlay = document.querySelector(".overlay");
 
 mobileMenu.addEventListener("click", function () {
   mobileMenu.classList.toggle("mobile-menu-close");
@@ -106,51 +107,133 @@ cartIcon.addEventListener("click", function () {
 
 // THUMBNAIL OVERLAYS
 
-const thumbnails = document.querySelectorAll(".thumbnail");
+setThumbnails();
 
-for (i = 0; i < thumbnails.length; i++) {
-  const currentImage = document.querySelector(".current-image");
+function setThumbnails() {
+  const thumbnails = document.querySelectorAll(".thumbnail");
 
-  const thumbnailImage = thumbnails[i].querySelector("img");
-  const thumbnailOverlay = thumbnails[i].querySelector(".thumbnail-overlay");
-  const thumbnailIndex = thumbnailImage.src.split("-")[2];
+  for (i = 0; i < thumbnails.length; i++) {
+    const currentImage = document.querySelector(".current-image");
 
-  thumbnails[i]
-    .querySelector(".thumbnail-overlay")
-    .addEventListener("click", function () {
-      currentImage.src = `/images/image-product-${thumbnailIndex}.jpg`;
+    const thumbnailImage = thumbnails[i].querySelector("img");
+    const thumbnailOverlay = thumbnails[i].querySelector(".thumbnail-overlay");
+    const thumbnailIndex = thumbnailImage.src.split("-")[2];
 
-      for (j = 0; j < thumbnails.length; j++) {
-        thumbnails[j]
-          .querySelector(".thumbnail-overlay")
-          .classList.remove("thumbnail-selected");
-      }
+    thumbnails[i]
+      .querySelector(".thumbnail-overlay")
+      .addEventListener("click", function () {
+        currentImage.src = `/images/image-product-${thumbnailIndex}.jpg`;
 
-      thumbnailOverlay.classList.add("thumbnail-selected");
-    });
+        for (j = 0; j < thumbnails.length; j++) {
+          thumbnails[j]
+            .querySelector(".thumbnail-overlay")
+            .classList.remove("thumbnail-selected");
+        }
+
+        thumbnailOverlay.classList.add("thumbnail-selected");
+      });
+  }
 }
 
 // MOBILE PREVIOUS/NEXT IMAGE
 
-const previousImage = document.querySelector(".previous-image");
-const nextImage = document.querySelector(".next-image");
+setArrows();
 
-previousImage.addEventListener("click", function () {
-  const currentImage = document.querySelector(".current-image");
+function setArrows() {
+  const previousImage = document.querySelector(".previous-image");
+  const nextImage = document.querySelector(".next-image");
 
-  const currentIndex = Number(currentImage.src.split("-").pop().split(".")[0]);
-  const previousIndex = currentIndex === 1 ? 4 : currentIndex - 1;
+  previousImage.addEventListener("click", function () {
+    const currentImage = document.querySelector(".current-image");
 
-  currentImage.src = `/images/image-product-${previousIndex}.jpg`;
-});
+    const currentIndex = Number(
+      currentImage.src.split("-").pop().split(".")[0]
+    );
+    const previousIndex = currentIndex === 1 ? 4 : currentIndex - 1;
 
-nextImage.addEventListener("click", function () {
-  const currentImage = document.querySelector(".current-image");
+    currentImage.src = `/images/image-product-${previousIndex}.jpg`;
 
-  const currentIndex = Number(currentImage.src.split("-").pop().split(".")[0]);
-  const nextIndex = currentIndex === 4 ? 1 : currentIndex + 1;
+    selectThumbnail(previousIndex - 1);
+  });
 
-  currentImage.src = `/images/image-product-${nextIndex}.jpg`;
-});
+  nextImage.addEventListener("click", function () {
+    const currentImage = document.querySelector(".current-image");
+
+    const currentIndex = Number(
+      currentImage.src.split("-").pop().split(".")[0]
+    );
+    const nextIndex = currentIndex === 4 ? 1 : currentIndex + 1;
+
+    currentImage.src = `/images/image-product-${nextIndex}.jpg`;
+
+    selectThumbnail(nextIndex - 1);
+  });
+}
+
+function selectThumbnail(i) {
+  const thumbnails = document.querySelectorAll(".thumbnail");
+  const thumbnailOverlay = thumbnails[i].querySelector(".thumbnail-overlay");
+
+  for (j = 0; j < thumbnails.length; j++) {
+    thumbnails[j]
+      .querySelector(".thumbnail-overlay")
+      .classList.remove("thumbnail-selected");
+  }
+
+  thumbnailOverlay.classList.add("thumbnail-selected");
+}
 
 // LIGHTBOX
+
+const lightbox = document.querySelector(".lightbox");
+const currentImage = document.querySelector(".current-image");
+
+currentImage.addEventListener("click", function () {
+  if (window.innerWidth > 600) {
+    lightbox.innerHTML = `
+      <div class="lightbox-close">
+        <img class="lightbox-close-icon"src="images/icon-close.svg" />
+      </div>
+  
+      <div class="preview-current">
+        <img class="current-image" src="images/image-product-1.jpg" />
+        <img class="previous-image" src="images/icon-previous.svg" />
+        <img class="next-image" src="images/icon-next.svg" />
+      </div>
+      <div class="preview-all">
+        <div class="thumbnail">
+          <img src="images/image-product-1-thumbnail.jpg" />
+          <div class="thumbnail-overlay thumbnail-selected"></div>
+        </div>
+  
+        <div class="thumbnail">
+          <img src="images/image-product-2-thumbnail.jpg" />
+          <div class="thumbnail-overlay"></div>
+        </div>
+  
+        <div class="thumbnail">
+          <img src="images/image-product-3-thumbnail.jpg" />
+          <div class="thumbnail-overlay"></div>
+        </div>
+  
+        <div class="thumbnail">
+          <img src="images/image-product-4-thumbnail.jpg" />
+          <div class="thumbnail-overlay"></div>
+        </div>
+      </div>
+      `;
+    lightbox.style.zIndex = "4";
+    setThumbnails();
+    setArrows();
+    overlay.style.display = "block";
+    document.body.style.overflow = "hidden";
+
+    const closeLightbox = document.querySelector(".lightbox-close-icon");
+    closeLightbox.addEventListener("click", function () {
+      lightbox.innerHTML = "";
+      lightbox.style.zIndex = "-1";
+      overlay.style.display = "none";
+      document.body.style.overflow = "visible";
+    });
+  }
+});
