@@ -236,8 +236,6 @@ currentImage.addEventListener("click", function () {
     closeLightbox.addEventListener("click", function () {
       lightbox.innerHTML = "";
       lightbox.style.zIndex = "-1";
-      document.querySelector(".previous-image").style.display = "none";
-      document.querySelector(".next-image").style.display = "none";
       overlay.style.display = "none";
       document.body.style.overflow = "visible";
     });
