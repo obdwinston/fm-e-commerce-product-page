@@ -117,7 +117,9 @@ function setThumbnails() {
 
     const thumbnailImage = thumbnails[i].querySelector("img");
     const thumbnailOverlay = thumbnails[i].querySelector(".thumbnail-overlay");
-    const thumbnailIndex = thumbnailImage.src.split("-")[2];
+
+    const thumbnailArray = thumbnailImage.src.split("-");
+    const thumbnailIndex = thumbnailArray[thumbnailArray.length - 2];
 
     thumbnails[i]
       .querySelector(".thumbnail-overlay")
