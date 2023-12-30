@@ -396,6 +396,7 @@ nav {
 
 .previous-image,
 .next-image {
+  display: none;
   position: absolute;
   background: var(--light-grayish-blue);
   width: 40px;
@@ -410,6 +411,12 @@ nav {
 }
 .next-image {
   right: 5%;
+}
+@media only screen and (max-width: 600px) {
+  .previous-image,
+  .next-image {
+    display: block;
+  }
 }
 
 .previous-image:hover,
